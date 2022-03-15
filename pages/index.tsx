@@ -19,7 +19,7 @@ const Home: NextPage = () => {
           Let's laught with Chuck :)
         </p>
 
-        <div className='flex justify-around w-full mt-10'>
+        <div className='flex justify-evenly w-full mt-10 space-x-4'>
           
           <Button href="/random" name="Random"/>
           <Button href="/by-category" name="Category"/>
