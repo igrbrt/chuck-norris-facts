@@ -5,7 +5,7 @@ import Joke from '../components/joke'
 import BackButton from '../components/backButton'
 
 function Random() {
-  const [random, setRandom] = useState({length, value: ''});
+  const [random, setRandom] = useState({length: 0, value: ''});
 
   function getJoke() {
     const URL = 'https://api.chucknorris.io/jokes/random';

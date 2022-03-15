@@ -8,7 +8,7 @@ import BackButton from '../components/backButton'
 function ByCategory() {
   const [category, setCategory] = useState(['Select an option']);
   const [selected, setSelected] = useState(category[0]);
-  const [joke, setJoke] = useState({length, value: ''});
+  const [joke, setJoke] = useState({length: 0, value: ''});
   
   function getCategories() {
     const URL = 'https://api.chucknorris.io/jokes/categories';
@@ -39,7 +39,7 @@ function ByCategory() {
       getJokeByCategory();
     }
     if(selected == 'Select an option'){
-      setJoke({length, value: ''});
+      setJoke({length: 0, value: ''});
     }
   }, [selected]);
 

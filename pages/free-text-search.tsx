@@ -6,7 +6,7 @@ import BackButton from '../components/backButton'
 
 function FreeTextSearch() {
   
-  const [joke, setJoke] = useState({length, value: ''});
+  const [joke, setJoke] = useState({length: 0, value: ''});
   const [inputStr, setinputStr] = useState('');
   const [searched, setSearched] = useState(false);
 
@@ -22,7 +22,7 @@ function FreeTextSearch() {
           const rand = Math.trunc(Math.random() * size);
           setJoke(answer.result[rand]);
         }else{
-          setJoke({length, value: ''});
+          setJoke({length: 0, value: ''});
         }
       });
     }
