@@ -66,7 +66,6 @@ function select({selected, category, parentCallback}:selectProps) {
             </Listbox>
           </div>
         </div>
-
   )
 }
 

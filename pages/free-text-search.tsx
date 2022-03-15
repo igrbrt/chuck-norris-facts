@@ -1,13 +1,12 @@
 import { ChevronLeftIcon, ExclamationCircleIcon } from '@heroicons/react/solid';
 import Head from 'next/head'
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import Joke from '../components/joke'
 import BackButton from '../components/backButton'
 
 function FreeTextSearch() {
   
-  const [joke, setJoke] = useState([]);
+  const [joke, setJoke] = useState({length, value: ''});
   const [inputStr, setinputStr] = useState('');
   const [searched, setSearched] = useState(false);
 
@@ -20,10 +19,10 @@ function FreeTextSearch() {
         const answer = await serverAnswer.json();
         const size = answer.total;
         if(size > 0){
-          const rand = parseInt(Math.random() * (size));
+          const rand = Math.trunc(Math.random() * size);
           setJoke(answer.result[rand]);
         }else{
-          setJoke([]);
+          setJoke({length, value: ''});
         }
       });
     }

@@ -1,13 +1,11 @@
 import Head from 'next/head'
 import React, { useState, useEffect } from 'react'
 import { PlusCircleIcon } from '@heroicons/react/solid'
-import Button from '../components/button'
 import Joke from '../components/joke'
-import Link from 'next/link'
 import BackButton from '../components/backButton'
 
 function Random() {
-  const [random, setRandom] = useState([]);
+  const [random, setRandom] = useState({length, value: ''});
 
   function getJoke() {
     const URL = 'https://api.chucknorris.io/jokes/random';
