@@ -39,7 +39,7 @@ function ByCategory() {
       getJokeByCategory();
     }
     if(selected == 'Select an option'){
-      setJoke('');
+      setJoke([]);
     }
   }, [selected]);
 
