@@ -1,7 +1,48 @@
 import Head from 'next/head'
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import Joke from '../components/joke'
+import Select from '../components/select'
+import BackButton from '../components/backButton'
+
 
 function ByCategory() {
+  const [category, setCategory] = useState(['Select an option']);
+  const [selected, setSelected] = useState(category[0]);
+  const [joke, setJoke] = useState([]);
+  
+  function getCategories() {
+    const URL = 'https://api.chucknorris.io/jokes/categories';
+    
+    fetch(URL).then(async (serverAnswer) => {
+      const answer = await serverAnswer.json();
+      setCategory([...category, ...answer]);
+      });
+  };
+
+  function getJokeByCategory() {
+    const URL = 'https://api.chucknorris.io/jokes/random?category=' + selected;
+    
+    fetch(URL).then(async (serverAnswer) => {
+      const answer = await serverAnswer.json();
+      setJoke(answer);
+      
+    });
+  };
+
+  function handleCallback(childData:any){
+    setSelected(childData)
+  }
+
+  useEffect(() => {
+    getCategories()    
+    if(selected != '' && selected != 'Select an option'){
+      getJokeByCategory();
+    }
+    if(selected == 'Select an option'){
+      setJoke('');
+    }
+  }, [selected]);
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
         <Head>
@@ -14,18 +55,21 @@ function ByCategory() {
           Chuck Norris React App
         </h1>
 
-        <p className="mt-3 text-2xl">
-          Select a Category
+        <p className="mt-3 text-2xl text-blue-500">
+          Select a category
         </p>
 
-        <p className="mt-3 text-2xl">
-          Insert a Joke from API
-        </p>
+        <div className='flex gap-x-2 items-center mt-2'>
+          <Select selected={selected} category={category} parentCallback={handleCallback}/>
+          <BackButton />
+        </div>
 
-        <p className="mt-3 text-2xl">
-          Norris, Chuck (ever)
-        </p>
+        { joke.length != 0 && 
+          <Joke text={joke.value}/>
+        }
 
+        
+          
         
         </main>
     </div>

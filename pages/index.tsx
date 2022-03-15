@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import Button from '../components/button';
 
 const Home: NextPage = () => {
   return (
@@ -21,32 +22,14 @@ const Home: NextPage = () => {
         </p>
 
         <div className='flex justify-around w-full mt-10'>
-          <Link href="/random">
-            <a className='bg-blue-500 text-white px-2 py-2 rounded-md hover:bg-blue-400 hover:transition hover:duration-300'>
-              Random
-            </a>
-          </Link>
-          <Link href="/by-category">
-            <a className='bg-blue-500 text-white px-2 py-2 rounded-md hover:bg-blue-400 hover:transition hover:duration-300'>By Category</a>
-          </Link>
-          <Link href="/free-text-search">
-            <a className='bg-blue-500 text-white px-2 py-2 rounded-md hover:bg-blue-400 hover:transition hover:duration-300'>Free Text Search</a>
-          </Link>
+          
+          <Button href="/random" name="Random"/>
+          <Button href="/by-category" name="Category"/>
+          <Button href="/free-text-search" name="Free Text Search"/>
+          
         </div>
         
       </main>
-
-      {/* <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-      </footer> */}
     </div>
   )
 }
