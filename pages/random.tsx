@@ -45,7 +45,7 @@ function Random() {
 
         <div className='flex items-center mt-2'>
           <PlusCircleIcon className="w-10 h-10 text-green-500 hover:text-green-400 hover:transition hover:duration-300 mr-2 cursor-pointer" aria-hidden="true" onClick={getJoke}/>
-          <BackButton />
+          <BackButton/>
         </div>
         
         </main>
