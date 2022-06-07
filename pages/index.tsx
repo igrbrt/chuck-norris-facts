@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Button from '../components/button';
+import Button from '../components/button'
 
 const Home: NextPage = () => {
   return (
@@ -11,22 +11,15 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Chuck Norris React App
-        </h1>
+        <h1 className="text-6xl font-bold">Chuck Norris React App</h1>
 
-        <p className="mt-3 text-2xl">
-          Let's laught with Chuck :)
-        </p>
+        <p className="mt-3 text-2xl">Let's laught with Chuck :)</p>
 
-        <div className='flex justify-evenly w-full mt-10 space-x-4'>
-          
-          <Button href="/random" name="Random"/>
-          <Button href="/by-category" name="Category"/>
-          <Button href="/free-text-search" name="Free Text Search"/>
-          
+        <div className="mt-10 flex w-full justify-evenly space-x-4">
+          <Button href="/random" name="Random" />
+          <Button href="/by-category" name="Category" />
+          <Button href="/free-text-search" name="Free Text Search" />
         </div>
-        
       </main>
     </div>
   )

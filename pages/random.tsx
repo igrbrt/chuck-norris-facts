@@ -1,35 +1,23 @@
 import Head from 'next/head'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { PlusCircleIcon } from '@heroicons/react/solid'
-import Joke from '../components/joke'
+import ClientOnly from '../components/clientOnly'
+import RandomCategoryJoke from '../components/randomCategoryJoke'
 import BackButton from '../components/backButton'
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
+import { useApolloClient } from '@apollo/client'
+import { RANDOM } from '../graphql/queries/queries'
 
 function Random() {
-  const client = new ApolloClient({
-    uri: 'http://localhost:3001/graphql',
-    cache: new InMemoryCache(),
-  })
+  const [random, setRandom] = useState('')
+  const client = useApolloClient()
 
-  const [random, setRandom] = useState({ length: 0, value: '' })
-
-  async function getJoke() {
+  const getJoke = async () => {
     const { data } = await client.query({
-      query: gql`
-        query GetRandomJoke {
-          randomJoke {
-            id
-            value
-          }
-        }
-      `,
+      query: RANDOM,
+      fetchPolicy: 'no-cache',
     })
-    setRandom(data.randomJoke)
+    setRandom(data.randomJoke.value)
   }
-
-  useEffect(() => {
-    getJoke()
-  }, [])
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
@@ -43,7 +31,9 @@ function Random() {
 
         <p className="mt-3 text-2xl text-blue-500">Random Joke</p>
 
-        {random.length != 0 && <Joke text={random.value} />}
+        <ClientOnly>
+          <RandomCategoryJoke joke={random} type={RANDOM} />
+        </ClientOnly>
 
         <div className="mt-2 flex items-center">
           <PlusCircleIcon
